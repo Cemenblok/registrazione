@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registrazione — Cemenblok</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #f5f5f5;
+      --white:      #ffffff;
+      --green:      #4caf3f;
+      --green-dark: #3a8a2e;
+      --green-light:rgba(76,175,63,0.1);
+      --ink:        #1c1c1c;
+      --mid:        #555555;
+      --muted:      #999999;
+      --border:     #e0e0e0;
+      --border-focus: #4caf3f;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0;
+    }
+
+    /* ── Header bar (like the site) ── */
+    .site-header {
+      width: 100%;
+      background: #1c1c1c;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 70px;
+      border-bottom: 3px solid var(--green);
+    }
+
+    .site-header img {
+      height: 36px;
+      width: auto;
+    }
+
+    /* ── Page content ── */
+    .page {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem 4rem;
+    }
+
+    /* ── Eyebrow ── */
+    .eyebrow {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.6rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .tagline {
+      font-size: 0.88rem;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 2.4rem;
+      font-weight: 300;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--green);
+      margin: 0 auto 2.4rem;
+      border-radius: 2px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--green);
+      border-radius: 2px;
+      padding: 2.8rem 2.8rem 2.4rem;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+      animation: fadeUp 0.55s cubic-bezier(.22,.9,.36,1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Form ── */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.45rem;
+    }
+
+    input {
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 0.75rem 0.9rem;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.92rem;
+      color: var(--ink);
+      background: #fafafa;
+      transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+      outline: none;
+      width: 100%;
+    }
+
+    input::placeholder { color: #ccc; }
+
+    input:focus {
+      border-color: var(--border-focus);
+      background: #fff;
+      box-shadow: 0 0 0 3px var(--green-light);
+    }
+
+    input:valid:not(:placeholder-shown) {
+      border-color: rgba(76,175,63,0.5);
+    }
+
+    /* ── Button ── */
+    .btn {
+      width: 100%;
+      padding: 0.9rem;
+      margin-top: 0.4rem;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 2px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+      box-shadow: 0 2px 12px rgba(76,175,63,0.2);
+    }
+
+    .btn:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 18px rgba(76,175,63,0.28);
+    }
+
+    .btn:active { transform: translateY(0); }
+
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+    .btn.loading .btn-text { display: none; }
+    .btn .btn-loader { display: none; }
+    .btn.loading .btn-loader { display: inline-block; }
+
+    .spinner {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Error ── */
+    .error-msg {
+      display: none;
+      font-size: 0.8rem;
+      color: #c0392b;
+      background: #fdf4f3;
+      border: 1px solid #f5c6c0;
+      border-radius: 2px;
+      padding: 0.6rem 0.85rem;
+      margin-top: 0.8rem;
+      text-align: center;
+    }
+
+    /* ── Success ── */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 1rem 0 0.5rem;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .success-icon {
+      width: 60px; height: 60px;
+      background: var(--green-light);
+      border: 2px solid rgba(76,175,63,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+    }
+
+    .success-icon svg {
+      width: 28px; height: 28px;
+      stroke: var(--green);
+    }
+
+    .success-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .success-msg {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      width: 100%;
+      background: #1c1c1c;
+      color: #888;
+      text-align: center;
+      padding: 1.2rem 1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      margin-top: auto;
+    }
+
+    .site-footer a { color: var(--green); text-decoration: none; }
+
+    @media (max-width: 480px) {
+      .card { padding: 2rem 1.4rem; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <img src="https://i0.wp.com/cemenblok.it/wp-content/uploads/2020/10/logo2.png?fit=175%2C40&ssl=1" alt="Cemenblok"/>
+  </header>
+
+  <!-- Page -->
+  <div class="page">
+    <p class="eyebrow">Cemenblok</p>
+    <h1>Registrazione</h1>
+    <p class="tagline">Compila il modulo per iscriverti</p>
+    <div class="divider"></div>
+
+    <div class="card">
+      <div id="form-container">
+        <div class="form-row">
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" placeholder="Mario" required autocomplete="given-name"/>
+          </div>
+          <div class="field">
+            <label for="cognome">Cognome</label>
+            <input type="text" id="cognome" placeholder="Rossi" required autocomplete="family-name"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Indirizzo Email</label>
+          <input type="email" id="email" placeholder="mario@esempio.it" required autocomplete="email"/>
+        </div>
+
+        <div class="field">
+          <label for="telefono">Numero di Telefono</label>
+          <input type="tel" id="telefono" placeholder="+39 333 000 0000" required autocomplete="tel"/>
+        </div>
+
+        <button class="btn" id="submit-btn" type="button" onclick="submitForm()">
+          <span class="btn-text">Iscriviti ora</span>
+          <span class="btn-loader"><span class="spinner"></span></span>
+        </button>
+
+        <div class="error-msg" id="error-msg"></div>
+      </div>
+
+      <div class="success-state" id="success-state">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <p class="success-title">Iscrizione completata</p>
+        <p class="success-msg">Grazie per esserti registrato.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    Copyright © 2025 Cemenblok &nbsp;·&nbsp;
+    <a href="https://cemenblok.it" target="_blank">cemenblok.it</a>
+  </footer>
+
+  <script>
+    const SCRIPT_URL ="https://script.google.com/macros/s/AKfycbxxB7BMDz088wg1vMXR9nSEvqbBRKLaVYOFnZIrUimB6m_Rf84mP5Ws5uUtpwJFjT4ZGQ/exec";
+
+    async function submitForm() {
+      const nome     = document.getElementById('nome').value.trim();
+      const cognome  = document.getElementById('cognome').value.trim();
+      const email    = document.getElementById('email').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const btn      = document.getElementById('submit-btn');
+      const errMsg   = document.getElementById('error-msg');
+
+      if (!nome || !cognome || !email || !telefono) {
+        errMsg.textContent = "Compila tutti i campi prima di procedere.";
+        errMsg.style.display = 'block';
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errMsg.textContent = "Inserisci un indirizzo email valido.";
+        errMsg.style.display = 'block';
+        return;
+      }
+
+      errMsg.style.display = 'none';
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nome, cognome, email, telefono })
+        });
+
+        document.getElementById('form-container').style.display = 'none';
+        document.getElementById('success-state').style.display = 'block';
+
+      } catch (err) {
+        errMsg.textContent = "Si è verificato un errore. Riprova tra qualche istante.";
+        errMsg.style.display = 'block';
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter') submitForm();
+    });
+  </script>
+
+</body>
+</html>
